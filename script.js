@@ -45,3 +45,9 @@ subSubcategories.forEach((subSubcategory) => {
     subSubcategory.style.display = "none"; // 마우스 아웃 시 하위 하위 카테고리 숨김
   });
 });
+
+const home = document.getElementById("home");
+
+home.addEventListener("click", () => {
+  location.reload(); // 주소임시
+});
