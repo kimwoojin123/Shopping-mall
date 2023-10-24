@@ -3,11 +3,22 @@ const categories = document.querySelectorAll("#categories li");
 
 categories.forEach((category) => {
   const subcategories = category.querySelector(".subcategories");
+  category.addEventListener("load", () => {
+    subcategories.style.display = "none";
+  });
   category.addEventListener("mouseover", () => {
     subcategories.style.display = "block";
   });
   category.addEventListener("mouseout", () => {
     subcategories.style.display = "none";
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const subcategories = document.querySelectorAll(".subcategories");
+
+  subcategories.forEach((subcategory) => {
+    subcategory.style.display = "none";
   });
 });
 
@@ -20,5 +31,17 @@ subcategoryItems.forEach((subcategoryItem) => {
   });
   subcategoryItem.addEventListener("mouseout", () => {
     // 하위 하위 카테고리를 숨기는 코드를 작성하세요.
+  });
+});
+
+const subSubcategories = document.querySelectorAll(".sub-subcategories");
+
+subSubcategories.forEach((subSubcategory) => {
+  subSubcategory.style.display = "none"; // 초기에 하위 하위 카테고리를 숨김
+  subSubcategory.parentElement.addEventListener("mouseover", () => {
+    subSubcategory.style.display = "block"; // 마우스 오버 시 하위 하위 카테고리 표시
+  });
+  subSubcategory.parentElement.addEventListener("mouseout", () => {
+    subSubcategory.style.display = "none"; // 마우스 아웃 시 하위 하위 카테고리 숨김
   });
 });
