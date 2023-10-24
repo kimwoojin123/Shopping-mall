@@ -51,3 +51,31 @@ const home = document.getElementById("home");
 home.addEventListener("click", () => {
   location.reload(); // 주소임시
 });
+
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+function showSlide(slideIndex) {
+  slides[currentSlide].style.display = "none";
+  slides[slideIndex].style.display = "block";
+  currentSlide = slideIndex;
+}
+
+function nextSlide() {
+  let next = currentSlide + 1;
+  if (next >= slides.length) {
+    next = 0;
+  }
+  showSlide(next);
+}
+
+function prevSlide() {
+  let prev = currentSlide - 1;
+  if (prev < 0) {
+    prev = slides.length - 1;
+  }
+  showSlide(prev);
+}
+
+showSlide(currentSlide);
+setInterval(nextSlide, 3000); // 3초마다 다음 슬라이드로 이동
