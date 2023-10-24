@@ -1,0 +1,54 @@
+
+li > a {
+  color: inherit;
+    text-decoration: none;
+}
+
+
+
+#categories ul {
+  list-style: none;
+  display: flex; /* 가로 정렬을 위한 설정 */
+  padding: 0;
+}
+
+#categories li {
+  margin-right: 20px; /* 카테고리 항목 사이의 간격 조절 */
+  
+}
+
+#categories li:last-child {
+  margin-right: 0; /* 마지막 카테고리 항목의 간격 제거 */
+}
+
+.subcategories {
+  display: none; /* 모든 하위 카테고리를 초기에 숨김 */
+  position: absolute;
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  z-index: 1;
+}
+
+
+
+#categories .subcategories {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 하위 카테고리의 간격 설정 */
+#categories .subcategories > li {
+  margin-bottom: 10px;
+}
+
+/* 하위 하위 카테고리를 오른쪽에 나타나게 함 */
+#categories .sub-subcategories {
+  position: absolute;
+  right: -90px; /* 오른쪽으로 이동 */
+  top: 0;
+  display: none; /* 초기에 숨김 */
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  z-index: 1;
