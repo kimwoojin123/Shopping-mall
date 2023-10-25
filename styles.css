@@ -89,7 +89,7 @@ li > a {
 /* 하위 하위 카테고리를 오른쪽에 나타나게 함 */
 #categories .sub-subcategories {
   position: absolute;
-  right: -90px; /* 오른쪽으로 이동 */
+  right: -55px; /* 오른쪽으로 이동 */
   top: 0;
   display: none; /* 초기에 숨김 */
   background: #fff;
