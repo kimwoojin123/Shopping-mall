@@ -5,11 +5,13 @@ const path = require("path");
 const server = http.createServer((req, res) => {
   let filePath = path.join(__dirname, req.url);
 
-  // 확인할 파일 경로가 디렉토리인 경우 index.html을 사용
+  // 파일 경로가 디렉토리인지 확인
   if (fs.statSync(filePath).isDirectory()) {
+    // 디렉토리인 경우 "index.html" 파일을 추가
     filePath = path.join(filePath, "index.html");
   }
 
+  // 파일을 읽음
   fs.readFile(filePath, (error, content) => {
     if (error) {
       if (error.code === "ENOENT") {
@@ -47,5 +49,5 @@ function getContentType(filePath) {
 
 const port = 3000;
 server.listen(port, () => {
-  console.log(`http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port}`);
 });
