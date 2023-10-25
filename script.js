@@ -49,7 +49,7 @@ subSubcategories.forEach((subSubcategory) => {
 const home = document.getElementById("home");
 
 home.addEventListener("click", () => {
-  location.reload(); // 주소임시
+  location.href = "http://localhost:3000/";
 });
 
 const slides = document.querySelectorAll(".slide");
