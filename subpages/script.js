@@ -109,6 +109,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const productElement = createProductElement(product);
     productList.appendChild(productElement);
   });
+
+  productList.addEventListener("click", (event) => {
+    const productDiv = event.target.closest(".product");
+    if (productDiv) {
+      // // 클릭한 상품에 해당하는 서브페이지로 이동
+      // const productName = productDiv.querySelector("h3").textContent;
+      // const subPagePath = `/products/${productName}`;
+      // 서브페이지 작성시 부활예정
+      window.location.href = `http://localhost:3000/`;
+    }
+  });
 });
 
 function createProductElement(product) {
