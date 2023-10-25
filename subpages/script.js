@@ -14,14 +14,6 @@ categories.forEach((category) => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const subcategories = document.querySelectorAll(".subcategories");
-
-  subcategories.forEach((subcategory) => {
-    subcategory.style.display = "none";
-  });
-});
-
 // 하위 카테고리에 마우스 오버시 하위 하위 카테고리 표시 (이 부분은 필요에 따라 더 확장할 수 있음)
 const subcategoryItems = document.querySelectorAll(".subcategories li");
 
@@ -51,7 +43,14 @@ const home = document.getElementById("home");
 home.addEventListener("click", () => {
   location.href = "http://localhost:3000/"; // 주소임시
 });
+
 document.addEventListener("DOMContentLoaded", () => {
+  const subcategories = document.querySelectorAll(".subcategories");
+
+  subcategories.forEach((subcategory) => {
+    subcategory.style.display = "none";
+  });
+
   // 상품 리스트를 가져오고 표시하는 코드를 작성하세요.
   const productList = document.querySelector(".product-list");
 
@@ -120,6 +119,34 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = `http://localhost:3000/`;
     }
   });
+
+  // 드롭다운 메뉴 선택
+  const sortDirectionSelect = document.getElementById("sortDirection");
+
+  // 정렬 함수
+  function sortProducts(ascending) {
+    const productLists = document.querySelectorAll(".product"); // 상품 목록을 배열로 선택
+
+    const sortedProducts = Array.from(productLists).sort((a, b) => {
+      const priceA = parseFloat(a.querySelector(".product-price").textContent.replace("$", ""));
+      const priceB = parseFloat(b.querySelector(".product-price").textContent.replace("$", ""));
+      return ascending ? priceA - priceB : priceB - priceA;
+    });
+
+    const productList = document.querySelector(".product-list");
+
+    productLists.forEach((product) => product.remove());
+    sortedProducts.forEach((product) => productList.appendChild(product));
+  }
+
+  // 드롭다운 메뉴 변경 이벤트 핸들러
+  function applySorting() {
+    const selectedDirection = sortDirectionSelect.value;
+    sortProducts(selectedDirection === "ascending");
+  }
+
+  sortDirectionSelect.addEventListener("change", applySorting);
+  applySorting(); // 초기 정렬 적용
 });
 
 function createProductElement(product) {
@@ -135,6 +162,7 @@ function createProductElement(product) {
 
   const productPrice = document.createElement("p");
   productPrice.textContent = product.price;
+  productPrice.classList.add("product-price");
 
   productDiv.appendChild(productImage);
   productDiv.appendChild(productName);
